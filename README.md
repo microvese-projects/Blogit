@@ -121,7 +121,10 @@ To interact with the app, run the commands below in sequence on the terminal:
 
 ### Run tests
 
-No tests available yet.
+To run the tests. Run the following command: 
+```sh
+  rspec spec
+```
 
 ### Deployment
 
