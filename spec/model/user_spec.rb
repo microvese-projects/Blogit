@@ -7,6 +7,8 @@ RSpec.describe User, type: :model do
     subject.save
     Post.create(author: subject, title: 'First post', text: 'This is my first post')
     Post.create(author: subject, title: 'second post', text: 'This is my second post')
+    Post.create(author: subject, title: 'third post', text: 'This is my third post')
+    Post.create(author: subject, title: 'fourth post', text: 'This is my fourth post')
   end
 
   it 'name cannot be nil' do
