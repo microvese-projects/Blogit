@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   get '/', to: 'users#index'
   get '/users', to: 'users#index'
   get '/users/:id', to: 'users#profile'
+  get '/users/:id/posts', to: 'posts#index'
 end
