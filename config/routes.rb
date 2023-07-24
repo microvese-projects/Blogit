@@ -7,6 +7,6 @@ Rails.application.routes.draw do
   root "users#index"
   get '/', to: 'users#index'
   get '/users', to: 'users#index'
-  get '/users/:id', to: 'users#profile'
+  get '/users/:id', to: 'users#show'
   get '/users/:id/posts', to: 'posts#index'
 end
