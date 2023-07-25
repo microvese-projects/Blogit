@@ -23,6 +23,10 @@ RSpec.describe '/users', type: :request do
       expect(response.status).to eq(200)
     end
 
+    it 'Should return html' do
+      expect(response.content_type).to match(a_string_including('text/html'))
+    end
+
     it 'Should display the user\s data' do
       expect(response.body).to match(a_string_including('renders the profile of a specific user with a given id'))
     end
