@@ -1,1 +1,9 @@
 <h1>This page lists all users</h1>
+
+<%@users.each do |user|%>
+  <div>
+    <img src="<%= user.photo %>" />
+    <%= link_to user.name, user_path(user.id) %>
+    <div>Number of posts: <%= user.posts_counter ||= 0 %></div>
+  </div>
+<%end%>
