@@ -4,22 +4,17 @@
 <ul>
   <%@posts.each do |post|%>
     <li>
-      <div>
-        <h3><%= post.title%></h3>
-        <p><%= post.text%></p>
+      <%= link_to user_post_path(@user, post.id) do %>
         <div>
-          <span>Comments: <%= post.comments_counter ||= 0%></span>
-          <span>Likes: <%= post.likes_counter ||= 0%></span>
+          <h3><%= post.title%></h3>
+          <p><%= post.text%></p>
+          <div>
+            <span>Comments: <%= post.comments_counter ||= 0%></span>
+            <span>Likes: <%= post.likes_counter ||= 0%></span>
+          </div>
         </div>
-      </div>
-      <ul>
-        <%comments = post.recent_comments%>
-        <%comments.reverse.each do |comment|%>
-          <li>
-            <span><%= comment.author.name%>: </span><span><%= comment.text%></span>
-          </li>
-        <%end%>
-      </ul>
+      <% end %>
+      <%= render 'shared/comments', comments: post.recent_comments.reverse%>
     </li>
   <%end%>
 </ul>
