@@ -8,16 +8,23 @@
 </div>
 
 <div>
+  <h4>Bio</h4>
   <%= @user.bio %>
 </div>
 
 <%posts = @user.recent_posts %>
-<% posts.each do |post|%>
-  <div>
-    <h4>Post #<%= post.id %></h4>
-    <h3><%= post.title%></h3>
-    <p><%= post.text%></p>
-  </div>
-<%end%>
+<ul>
+  <% posts.reverse.each do |post|%>
+    <li>
+      <h4>Post #<%= post.id %></h4>
+      <h3><%= post.title%></h3>
+      <p><%= post.text%></p>
+      <div>
+        <span>Comments: <%= post.comments_counter ||= 0%></span>
+        <span>Likes: <%= post.likes_counter ||= 0%></span>
+      </div>
+    </li>
+  <%end%>
+</ul>
 
-<%= link_to "See all posts", users_path(posts) %>
+<%= link_to "See all posts", posts_user_path(@user) %>
