@@ -1,1 +1,31 @@
 <h1>This page lists all posts of a certain user.</h1>
+<div>
+  <img src=<%= @user.photo%> />
+  <div>
+    <h2><%= @user.name%></h2>
+    <div>Number of posts: <%= @user.posts_counter ||= 0 %></div>
+  </div>
+</div>
+
+<ul>
+  <%@posts.each do |post|%>
+    <li>
+      <div>
+        <h3><%= post.title%></h3>
+        <p><%= post.text%></p>
+        <div>
+          <span>Comments: <%= post.comments_counter ||= 0%></span>
+          <span>Likes: <%= post.likes_counter ||= 0%></span>
+        </div>
+      </div>
+      <ul>
+        <%comments = post.recent_comments%>
+        <%comments.reverse.each do |comment|%>
+          <li>
+            <span><%= comment.author.name%>: </span><span><%= comment.text%></span>
+          </li>
+        <%end%>
+      </ul>
+    </li>
+  <%end%>
+</ul>
