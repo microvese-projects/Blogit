@@ -1,5 +1,8 @@
 <div>
-  <h1><%= @post.title %> by <%=@post.author.name %></h1>
+  <div>
+    <h1><%= @post.title %> by <%=@post.author.name %></h1>
+    <%= render 'shared/counts', post: @post %>
+  </div>
   <p><%= @post.text %></p>
   <b><%= 'No comments!' if @post.comments.empty? %></b>
   <%= render 'shared/comments', comments: @post.comments%>
