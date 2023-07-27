@@ -18,7 +18,8 @@ h1 {
   flex: 1;
 }
 
-.name, .img {
+.name,
+.img {
   border: 3px solid black;
 }
 
