@@ -1,0 +1,13 @@
+.space {
+  margin-bottom: 20px;
+}
+
+.comments {
+  border: 3px solid black;
+  padding: 15px;
+  margin-top: 1px;
+}
+
+.post {
+  color: black;
+}
