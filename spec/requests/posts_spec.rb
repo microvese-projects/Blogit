@@ -4,7 +4,7 @@ RSpec.describe '/posts', type: :request do
   describe 'GET /index' do
     before(:each) do
       user = User.create(name: 'John Doe', photo: 'url', bio: 'This is a bio test')
-      post = Post.create(author: user, title: 'First post', text: 'This is my first post')
+      Post.create(author: user, title: 'First post', text: 'This is my first post')
 
       get "/users/#{user.id}/posts"
     end

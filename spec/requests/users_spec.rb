@@ -3,20 +3,27 @@ require 'rails_helper'
 RSpec.describe '/users', type: :request do
   describe 'GET /index' do
     before(:each) do
+      user = User.create(name: 'John Doe', photo: 'url', bio: 'This is a bio test')
+      Post.create(author: user, title: 'First post', text: 'This is my first post')
+
       get '/users'
     end
+
     it 'Should succesfully get a list of all users' do
       expect(response.status).to eq(200)
     end
 
     it 'Should list all users' do
-      expect(response.body).to match(a_string_including('This page lists all users'))
+      expect(response.body).to match(a_string_including('John Doe'))
     end
   end
 
   describe 'GET /show' do
     before(:each) do
-      get '/users/:id'
+      user = User.create(name: 'John Doe', photo: 'url', bio: 'This is a bio test')
+      Post.create(author: user, title: 'First post', text: 'This is my first post')
+
+      get "/users/#{user.id}"
     end
 
     it 'Should succesfully fetch a user\'s profile' do
@@ -28,7 +35,7 @@ RSpec.describe '/users', type: :request do
     end
 
     it 'Should display the user\s data' do
-      expect(response.body).to match(a_string_including('renders the profile of a specific user with a given id'))
+      expect(response.body).to match(a_string_including('This is my first post'))
     end
   end
 end
