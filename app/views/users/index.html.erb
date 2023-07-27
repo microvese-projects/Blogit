@@ -1,9 +1,14 @@
+<%= stylesheet_link_tag 'users' %>
 <h1>This page lists all users</h1>
 
 <%@users.each do |user|%>
-  <div>
-    <img src="<%= user.photo %>" />
-    <%= link_to user.name, user_path(user.id) %>
-    <div>Number of posts: <%= user.posts_counter ||= 0 %></div>
-  </div>
+  <%= link_to user_path(user.id) do %>
+    <div class='user-container'>
+      <img src=<%= user.photo %> alt='Profile' class='img' >
+        <div class='name'>
+          <b><%= user.name %></b>
+          <div class='counts'>Number of posts: <%= user.posts_counter ||= 0 %></div>
+        </div>
+    </div>
+  <% end %>
 <%end%>
