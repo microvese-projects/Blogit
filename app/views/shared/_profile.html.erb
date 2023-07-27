@@ -1,0 +1,7 @@
+<div class='user-container'>
+  <img src=<%= user.photo %> alt='Profile' class='img' >
+  <div class='name'>
+    <b><%= user.name %></b>
+    <div class='counts'>Number of posts: <%= user.posts_counter ||= 0 %></div>
+  </div>
+</div>

@@ -1,1 +1,8 @@
+<%= stylesheet_link_tag 'users' %>
 <h1>This page lists all users</h1>
+
+<%@users.each do |user|%>
+  <%= link_to user_path(user.id) do %>
+    <%= render 'shared/profile', user: user  %>
+  <% end %>
+<%end%>

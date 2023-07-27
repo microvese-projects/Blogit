@@ -1,1 +1,27 @@
-<h1>This page renders the profile of a specific user with a given id</h1>
+<%= stylesheet_link_tag 'profile' %>
+
+<h1><%= @user.name%>'s Profile</h1>
+
+<div class='container' >
+  <%= render 'shared/profile', user: @user%>
+
+  <div class='bio'>
+    <h4>Bio</h4>
+    <%= @user.bio %>
+  </div>
+
+  <%posts = @user.recent_posts %>
+  <% if posts.empty? %>
+    <b>No posts by <%= @user.name %></b>
+  <% else %>
+    <ul class='posts-container'>
+      <% posts.reverse.each do |post|%>
+        <%= link_to user_post_path(@user, post.id) do%>
+          <%= render 'shared/post', post: post %>
+        <%end%>
+      <%end%>
+    </ul>
+    <%= link_to "See all posts", user_posts_path(@user.id), class: 'see-all' %>
+  <% end %>
+
+</div>
