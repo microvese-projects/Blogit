@@ -1,25 +1,25 @@
+<%= stylesheet_link_tag 'profile' %>
+
 <h1><%= @user.name%>'s Profile</h1>
 
-<%= render 'shared/profile', user: @user%>
+<div class='container' >
+  <%= render 'shared/profile', user: @user%>
 
-<div>
-  <h4>Bio</h4>
-  <%= @user.bio %>
+  <div class='bio'>
+    <h4>Bio</h4>
+    <%= @user.bio %>
+  </div>
+
+  <%posts = @user.recent_posts %>
+  <ul class='posts-container'>
+    <% posts.reverse.each do |post|%>
+      <li class='post' >
+        <h3><%= post.title%></h3>
+        <p><%= post.text%></p>
+        <%= render 'shared/counts', post: post %>
+      </li>
+    <%end%>
+  </ul>
+
+  <%= link_to "See all posts", user_posts_path(@user.id), class: 'see-all' %>
 </div>
-
-<%posts = @user.recent_posts %>
-<ul>
-  <% posts.reverse.each do |post|%>
-    <li>
-      <h4>Post #<%= post.id %></h4>
-      <h3><%= post.title%></h3>
-      <p><%= post.text%></p>
-      <div>
-        <span>Comments: <%= post.comments_counter ||= 0%></span>
-        <span>Likes: <%= post.likes_counter ||= 0%></span>
-      </div>
-    </li>
-  <%end%>
-</ul>
-
-<%= link_to "See all posts", user_posts_path(@user.id) %>
