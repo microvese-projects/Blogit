@@ -16,11 +16,9 @@
   <% else %>
     <ul class='posts-container'>
       <% posts.reverse.each do |post|%>
-        <li class='post' >
-          <h3><%= post.title%></h3>
-          <p><%= post.text%></p>
-          <%= render 'shared/counts', post: post %>
-        </li>
+        <%= link_to user_post_path(@user, post.id) do%>
+          <%= render 'shared/post', post: post %>
+        <%end%>
       <%end%>
     </ul>
     <%= link_to "See all posts", user_posts_path(@user.id), class: 'see-all' %>
