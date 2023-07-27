@@ -1,0 +1,45 @@
+h1 {
+  text-align: center;
+}
+
+.user-container {
+  display: flex;
+  gap: 20px;
+  height: 100px;
+  width: 80vw;
+  max-width: 800px;
+  margin-inline: auto;
+  margin-bottom: 20px;
+  position: relative;
+  color: black;
+}
+
+.name {
+  flex: 1;
+}
+
+.name, .img {
+  border: 3px solid black;
+}
+
+a {
+  text-decoration: none;
+}
+
+.img {
+  height: 100%;
+  width: 100px;
+}
+
+.name b {
+  font-size: 3rem;
+  padding: 20px;
+}
+
+.name .counts {
+  width: max-content;
+  position: absolute;
+  font-size: 1.2rem;
+  bottom: 15px;
+  right: 5%;
+}
