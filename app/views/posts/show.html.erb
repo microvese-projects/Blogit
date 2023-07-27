@@ -4,6 +4,5 @@
     <%= render 'shared/counts', post: @post %>
   </div>
   <p><%= @post.text %></p>
-  <b><%= 'No comments!' if @post.comments.empty? %></b>
   <%= render 'shared/comments', comments: @post.comments%>
 </div>
