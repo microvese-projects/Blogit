@@ -1,8 +1,10 @@
-<div>
-  <div>
-    <h1><%= @post.title %> by <%=@post.author.name %></h1>
-    <%= render 'shared/counts', post: @post %>
+<div class='container'>
+  <div class='post'>
+    <div class='title'>
+      <h1><%= @post.title %> by <%=@post.author.name %></h1>
+      <%= render 'shared/counts', post: @post %>
+    </div>
+    <p><%= @post.text %></p>
   </div>
-  <p><%= @post.text %></p>
   <%= render 'shared/comments', comments: @post.comments%>
 </div>
