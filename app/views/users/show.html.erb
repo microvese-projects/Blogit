@@ -11,15 +11,19 @@
   </div>
 
   <%posts = @user.recent_posts %>
-  <ul class='posts-container'>
-    <% posts.reverse.each do |post|%>
-      <li class='post' >
-        <h3><%= post.title%></h3>
-        <p><%= post.text%></p>
-        <%= render 'shared/counts', post: post %>
-      </li>
-    <%end%>
-  </ul>
+  <% if posts.empty? %>
+    <b>No posts by <%= @user.name %></b>
+  <% else %>
+    <ul class='posts-container'>
+      <% posts.reverse.each do |post|%>
+        <li class='post' >
+          <h3><%= post.title%></h3>
+          <p><%= post.text%></p>
+          <%= render 'shared/counts', post: post %>
+        </li>
+      <%end%>
+    </ul>
+    <%= link_to "See all posts", user_posts_path(@user.id), class: 'see-all' %>
+  <% end %>
 
-  <%= link_to "See all posts", user_posts_path(@user.id), class: 'see-all' %>
 </div>
