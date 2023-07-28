@@ -13,13 +13,13 @@ class PostsController < ApplicationController
   end
 
   def create
+    return unless current_user
+
     @post = Post.new(author: @current_user, title: values[:title], text: values[:text])
 
     if @post.save
-      puts "called save"
       redirect_to user_post_path(@current_user, @post)
     else
-      puts "called exit"
       render :new, status: :unprocessable_entity
     end
   end
