@@ -10,6 +10,8 @@
     <%= @user.bio %>
   </div>
 
+  <%= link_to 'Create New Post', new_user_post_path(@current_user), class: 'create-post' %>
+
   <%posts = @user.recent_posts %>
   <% if posts.empty? %>
     <b>No posts by <%= @user.name %></b>
@@ -23,5 +25,4 @@
     </ul>
     <%= link_to "See all posts", user_posts_path(@user.id), class: 'see-all' %>
   <% end %>
-
 </div>
