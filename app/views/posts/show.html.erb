@@ -7,4 +7,6 @@
     <p><%= @post.text %></p>
   </div>
   <%= render 'shared/comments', comments: @post.comments%>
+
+  <%= button_to 'Add Comment',  new_user_post_comment_path(params[:user_id], @post), class: 'create-comment', method: :get %>
 </div>
