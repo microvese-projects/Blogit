@@ -20,18 +20,18 @@
   padding: 10px;
 }
 
+.form-container textarea {
+  padding: 10px;
+}
+
 .create-post {
   border: 2px solid black;
 }
 
-.create-post:hover,
-.create-comment:hover {
-  color: green;
-}
-
 .create-post,
 .create-btn,
-.create-comment {
+.create-comment,
+.add-like {
   padding: 10px;
   box-shadow: 4px 4px 3px;
   font-size: 1.2rem;
@@ -39,6 +39,28 @@
   cursor: pointer;
 }
 
-.create-comment {
+.create-comment,
+.add-like {
   margin-top: 20px;
+  margin-right: 10px;
+}
+
+.create-post:hover,
+.create-comment:hover,
+.create-btn:hover {
+  color: green;
+}
+
+.add-like:hover {
+  color: purple;
+}
+
+.buttons {
+  display: flex;
+}
+
+@media only screen and (max-width: 768px) {
+  .form-container * {
+    max-width: 80vw;
+  }
 }
