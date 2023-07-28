@@ -24,15 +24,21 @@
   border: 2px solid black;
 }
 
-.create-post:hover {
+.create-post:hover,
+.create-comment:hover {
   color: green;
 }
 
 .create-post,
-.create-btn {
+.create-btn,
+.create-comment {
   padding: 10px;
   box-shadow: 4px 4px 3px;
   font-size: 1.2rem;
   font-weight: bold;
   cursor: pointer;
+}
+
+.create-comment {
+  margin-top: 20px;
 }
