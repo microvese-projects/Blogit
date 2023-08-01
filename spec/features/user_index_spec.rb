@@ -14,7 +14,7 @@ describe 'home page' do
 
   context 'on click' do
     before do
-      visit "/users"
+      visit '/users'
       all('a', text: 'John Doe')[1].click
     end
     it 'shows the user\'s profile' do
