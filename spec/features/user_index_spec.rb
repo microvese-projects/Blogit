@@ -3,21 +3,27 @@ require 'rails_helper'
 describe 'home page' do
   before do
     @user = User.create(name: 'John Doe', photo: 'url', bio: 'This is a bio test')
+    visit '/'
   end
 
-  it 'loads with a list of users' do
-    visit '/'
+  it 'I can see the username of all other users.' do
     expect(page).to have_content('John Doe')
-    expect(page).to have_content('Number of posts: 0')
+  end
+
+  it 'I can see the profile picture for each user.' do
     expect(page).to have_css('img[src="url"]')
   end
 
-  context 'on click' do
+  it 'I can see the number of posts each user has written.' do
+    expect(page).to have_content('Number of posts: 0')
+  end
+
+  context 'when I click on a user' do
     before do
       visit '/users'
       all('a', text: 'John Doe')[1].click
     end
-    it 'shows the user\'s profile' do
+    it 'I am redirected to that user\'s show page.' do
       expect(page).to have_content('John Doe\'s Profile')
       expect(page).to have_content('Create New Post')
       expect(page).to have_content('No posts')

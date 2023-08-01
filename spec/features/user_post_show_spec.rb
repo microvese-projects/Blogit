@@ -17,15 +17,36 @@ describe 'post page' do
                    ])
   end
 
-  before { visit user_post_path(user, posts[0]) }
-
-  it 'shows the title and author' do
-    expect(page).to have_content('First post by John Doe')
+  before(:each) do
+    visit user_post_path(user, posts[0])
   end
 
-  it 'shows the comments and likes count' do
+  after(:each) do
+    Like.destroy_all
+    Comment.destroy_all
+    Post.destroy_all
+    User.destroy_all
+  end
+
+  it 'I can see the post\'s title.' do
+    expect(page).to have_content('First post')
+  end
+
+  it 'I can see who wrote the post.' do
+    expect(page).to have_content('by John Doe')
+  end
+
+  it 'I can see how many comments it has.' do
     expect(page).to have_content('Comments: 2')
     expect(page).to have_content('Likes: 0')
+  end
+
+  it 'I can see how many likes it has.' do
+    expect(page).to have_content('Likes: 0')
+  end
+
+  it 'I can see the post body.' do
+    expect(page).to have_content('This is my first post')
   end
 
   it 'allows adding of likes' do
@@ -33,11 +54,11 @@ describe 'post page' do
     expect(page).to have_content('Likes: 1')
   end
 
-  it 'shows the post body' do
-    expect(page).to have_content('This is my first post')
+  it 'I can see the username of each commentor.' do
+    expect(page).to have_content('John Doe: This is my first comment!')
   end
 
-  it 'shows the commentor\'s username and their comment' do
+  it 'I can see the comment each commentor left.' do
     expect(page).to have_content('John Doe: This is my first comment!')
   end
 end

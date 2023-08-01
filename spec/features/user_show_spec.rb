@@ -3,17 +3,32 @@ require 'rails_helper'
 describe 'profile page without posts' do
   let(:user) { User.create(name: 'John Doe', photo: 'url', bio: 'This is a bio test') }
 
-  before { visit user_path(user) }
+  before(:each) do
+    visit user_path(user)
+  end
 
-  context 'with no posts' do
-    it 'shows the profile details' do
+  after(:each) do
+    Like.destroy_all
+    Comment.destroy_all
+    Post.destroy_all
+    User.destroy_all
+  end
+
+  context '#' do
+    it 'I can see the user\'s username.' do
       expect(page).to have_content('John Doe')
-      expect(page).to have_content('Number of posts: 0')
+    end
+
+    it 'I can see the user\'s profile picture' do
       expect(page).to have_css('img[src="url"]')
     end
 
-    it 'shows no posts for a user with no posts' do
-      expect(page).to have_content('No posts')
+    it 'I can see the number of posts the user has written.' do
+      expect(page).to have_content('Number of posts: 0')
+    end
+
+    it 'I can see the user\'s bio.' do
+      expect(page).to have_content('This is a bio test')
     end
 
     it 'shows a button to create a post' do
@@ -21,7 +36,7 @@ describe 'profile page without posts' do
     end
   end
 
-  context 'adds a new post' do
+  context 'adds a new post and' do
     before do
       click_link 'Create New Post'
       fill_in 'post_title', with: 'This is a title'
@@ -64,18 +79,40 @@ describe 'profile page with posts' do
                 ])
   end
 
-  before { visit user_path(user) }
+  before(:each) do
+    visit user_path(user)
+  end
 
-  context 'shows' do
-    it 'a summary of posts' do
-      expect(page).to have_content('Number of posts: 4')
-      expect(page).to have_content('This is my second post')
-      expect(page).to have_content('This is my third post')
-      expect(page).to have_content('This is my fourth post')
-    end
+  after(:each) do
+    Like.destroy_all
+    Comment.destroy_all
+    Post.destroy_all
+    User.destroy_all
+  end
 
-    it 'only the last three posts' do
-      expect(page).to_not have_content('This is my first post')
-    end
+  it 'I can see the user\'s first 3 posts.' do
+    expect(page).to have_content('Number of posts: 4')
+    expect(page).to have_content('This is my second post')
+    expect(page).to have_content('This is my third post')
+    expect(page).to have_content('This is my fourth post')
+  end
+
+  it 'I can see a button that lets me view all of a user\'s posts.' do
+    expect(page).to have_content('See all posts')
+  end
+
+  it 'only the last three posts' do
+    expect(page).to_not have_content('This is my first post')
+  end
+
+  it 'When I click a user\'s post, it redirects me to that post\'s show page.' do
+    click_link 'Second post'
+    expect(page).to have_content('This is my second post')
+    expect(current_path).to eq(user_post_path(user, posts[1]))
+  end
+
+  it 'When I click to see all posts, it redirects me to the user\'s post\'s index page.' do
+    click_link 'See all posts'
+    expect(current_path).to eq(user_posts_path(user))
   end
 end
