@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe '#' do
+describe 'posts #index' do
   let(:user) { User.create(name: 'John Doe', photo: 'url', bio: 'This is a bio test') }
   let!(:posts) do
     Post.create([
