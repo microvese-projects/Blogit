@@ -10,7 +10,7 @@
     <%= @user.bio %>
   </div>
 
-  <%= link_to 'Create New Post', new_user_post_path(@current_user), class: 'create-post' %>
+  <%= link_to 'Create New Post', new_user_post_path(current_user), class: 'create-post' %>
 
   <%posts = @user.recent_posts %>
   <% if posts.empty? %>
