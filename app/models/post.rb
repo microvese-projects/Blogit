@@ -16,7 +16,7 @@ class Post < ApplicationRecord
   end
 
   def reduce_counter
-    self.decrement!(:comments_counter)
+    decrement!(:comments_counter)
   end
 
   private

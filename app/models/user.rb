@@ -17,7 +17,7 @@ class User < ApplicationRecord
   end
 
   def reduce_counter
-    self.decrement!(:posts_counter)
+    decrement!(:posts_counter)
   end
 
   private

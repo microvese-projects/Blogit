@@ -61,7 +61,7 @@
 
 .delete-btn:hover,
 .delete:hover {
-  color: red
+  color: red;
 }
 
 .add-like:hover {
