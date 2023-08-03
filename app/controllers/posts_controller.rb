@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  load_and_authorize_resource
+
   def index
     @user = User.find(params[:user_id])
     @posts = Post.all.includes(:author).where(users: { id: params[:user_id] })
@@ -15,18 +17,28 @@ class PostsController < ApplicationController
   def create
     return unless current_user
 
-    @post = Post.new(author: @current_user, title: values[:title], text: values[:text])
-
+    @post = Post.new(post_params)
+    @post.author = current_user
+  
     if @post.save
-      redirect_to user_post_path(@current_user, @post)
+      redirect_to user_post_path(current_user, @post)
     else
-      render :new, status: :unprocessable_entity
+      render :new, alert: 'Verify the information!'
     end
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    @post.likes.destroy_all
+    @post.comments.destroy_all
+    @post.destroy
+    User.find(params[:user_id]).reduce_counter
+    redirect_to user_path(current_user), notice: 'Post was successfully deleted.'
   end
 
   private
 
-  def values
+  def post_params
     params.require(:post).permit(:title, :text)
   end
 end
