@@ -16,6 +16,10 @@ class User < ApplicationRecord
     posts.order(created_at: :desc).limit(3)
   end
 
+  def reduce_counter
+    self.decrement!(:posts_counter)
+  end
+
   private
 
   def initialize_posts_counter
