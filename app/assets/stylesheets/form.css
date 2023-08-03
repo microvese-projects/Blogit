@@ -37,7 +37,8 @@
 .login,
 .sign-up,
 .confirmation,
-.reset-password {
+.reset-password,
+.delete-btn {
   padding: 10px;
   box-shadow: 4px 4px 3px;
   font-size: 1.2rem;
@@ -46,7 +47,8 @@
 }
 
 .create-comment,
-.add-like {
+.add-like,
+.delete-btn {
   margin-top: 20px;
   margin-right: 10px;
 }
@@ -55,6 +57,11 @@
 .create-comment:hover,
 .create-btn:hover {
   color: green;
+}
+
+.delete-btn:hover,
+.delete:hover {
+  color: red;
 }
 
 .add-like:hover {

@@ -6,6 +6,9 @@
       <li>
         <b><%= comment.author.name %>: </b>
         <span><%= comment.text %></span>
+        <% if current_user && current_user == comment.author %>
+          <%= button_to 'Delete', user_post_comment_path(current_user, @post, comment), method: :delete, class: 'delete' %>
+        <% end %>
       </li>
     <% end %>
   <% end %>

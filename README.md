@@ -127,6 +127,10 @@ To run the tests. Run the following command:
 - Twitter: [@bennyjoezz](https://twitter.com/bennyjoezz)
 - LinkedIn: [Benson Njuguna Kamau](https://www.linkedin.com/in/bennyjoez/)
 
+👤 **Abdullah AL-Khureif**
+
+- GitHub: [@OnlyUnknown](https://github.com/OnlyUnknown)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- FUTURE FEATURES -->
