@@ -11,7 +11,7 @@
             <p><%= post.text%></p>
             <%= render 'shared/counts', post: post%>
           </div>
-          <%= render 'shared/comments', comments: post.recent_comments.reverse%>
+          <%= render 'shared/comments', comments: post.recent_comments.reverse, post: post%>
         </li>
       <% end %>
     <%end%>
