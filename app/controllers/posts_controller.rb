@@ -7,7 +7,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render :json => @posts }
+      format.json { render json: @posts }
     end
   end
 
@@ -17,7 +17,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render :json => @comments }
+      format.json { render json: @comments }
     end
   end
 
