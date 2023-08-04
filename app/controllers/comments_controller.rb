@@ -7,12 +7,20 @@ class CommentsController < ApplicationController
     return unless current_user
 
     @post = Post.find(params[:post_id])
-    @comment = Comment.new(text: values[:comment], author_id: params[:user_id], post_id: params[:post_id])
+    @comment = Comment.new(comment_params)
+    @comment.author = current_user
+    @comment.post = @post
 
     if @comment.save
-      redirect_to user_post_path(params[:user_id], params[:post_id])
+      respond_to do |format|
+        format.html { redirect_to user_post_path(params[:user_id], params[:post_id]) }
+        format.json { render json: @comment, status: :created }
+      end
     else
-      render :new, alert: 'Error: Could not add comment.'
+      respond_to do |format|
+        format.html { render :new, alert: 'Error: Could not add comment.' }
+        format.json { render json: { error: 'Could not add comment' }, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -27,7 +35,7 @@ class CommentsController < ApplicationController
 
   private
 
-  def values
-    params.require(:comment).permit(:comment, :user_id, :post_id)
+  def comment_params
+    params.require(:comment).permit(:text, :user_id, :post_id)
   end
 end
