@@ -1,0 +1,75 @@
+openapi: 3.0.3
+info: 
+  title: Blogit Api
+  version: 1.0.0
+
+paths:
+  /users/{user_id}/posts:
+    get:
+      summary: Retrieve a list of posts for a user
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /users/{user_id}/posts/{post_id}:
+    get:
+      summary: Retrieve a post comments
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: post_id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /users/{user_id}/posts/{post_id}/comments:
+    post:
+      summary: Create a new comment for a post
+      parameters:
+        - in: path
+          name: user_id
+          required: true
+          schema:
+            type: integer
+        - in: path
+          name: post_id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                comment:
+                  type: object
+                  properties:
+                    text:
+                      type: string
+      responses:
+        '201':
+          description: Comment created successfully
+        '422':
+          description: Unprocessable Entity
+
+
+
+
+

@@ -73,8 +73,13 @@ group :test do
   gem 'rspec-rails'
   gem 'selenium-webdriver'
   gem 'webdrivers'
+  gem 'rswag-specs'
 end
 
 gem 'devise', '~> 4.9'
 
 gem 'cancancan', '~> 3.5'
+
+gem "rswag-api", "~> 2.10"
+
+gem "rswag-ui", "~> 2.10"
