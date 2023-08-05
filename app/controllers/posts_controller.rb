@@ -1,13 +1,26 @@
 class PostsController < ApplicationController
   load_and_authorize_resource
 
+  before_action :authenticate_user!, except: %i[index show]
+
   def index
     @user = User.find(params[:user_id])
     @posts = Post.all.includes(:author).where(users: { id: params[:user_id] })
+
+    respond_to do |format|
+      format.json { render json: @posts }
+      format.html # index.html.erb
+    end
   end
 
   def show
     @post = Post.find(params[:id])
+    @comments = @post.comments
+
+    respond_to do |format|
+      format.json { render json: @comments }
+      format.html # index.html.erb
+    end
   end
 
   def new
