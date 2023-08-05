@@ -1,25 +1,26 @@
 class CommentsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:create]
+  skip_before_action :verify_authenticity_token, only: :create
+
   def new
     @comment = Comment.new
   end
 
   def create
-    return unless current_user
-
     @post = Post.find(params[:post_id])
     @comment = Comment.new(comment_params)
-    @comment.author = current_user
+    @comment.author_id = params[:user_id]
     @comment.post = @post
 
     if @comment.save
       respond_to do |format|
-        format.html { redirect_to user_post_path(params[:user_id], params[:post_id]) }
         format.json { render json: @comment, status: :created }
+        format.html { redirect_to user_post_path(params[:user_id], params[:post_id]) }
       end
     else
       respond_to do |format|
-        format.html { render :new, alert: 'Error: Could not add comment.' }
         format.json { render json: { error: 'Could not add comment' }, status: :unprocessable_entity }
+        format.html { render :new, alert: 'Error: Could not add comment.' }
       end
     end
   end
